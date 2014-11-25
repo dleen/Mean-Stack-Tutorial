@@ -5,8 +5,8 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/flappernews-dev'
+    uri: 'mongodb://localhost:27017/flappernews-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };

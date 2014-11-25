@@ -1,0 +1,16 @@
+.page-header
+  h3
+    a(ng-show="post.link" href="{{post.link}}") {{post.title}}
+    span(ng-hide="post.link") {{post.title}}
+
+  div(ng-repeat="comment in post.comments | orderBy: '-upvotes'")
+    span(class="glyphicon glyphicon-thumbs-up"
+         ng-click="incrementUpvotes(comment)")
+      | {{comment.upvotes}} - by: {{comment.author}}
+      span(style="font-size: 20px; margin-left: 10px;") {{comment.body}}
+
+  form(style="margin-top: 30px" ng-submit="addComment(data)")
+    h3 Add a new comment!
+    .form-group
+      input(type="text" placeholder="Comment" ng-model="data.body").form-group
+    button(type="submit").btn.btn-primary Post

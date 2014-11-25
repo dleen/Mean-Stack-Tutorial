@@ -4,14 +4,13 @@ angular.module('flapperNewsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
+  'ui.router',
   'ui.bootstrap'
 ])
-  .config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
-
-    $locationProvider.html5Mode(true);
-  });
+  .config([
+    '$urlRouterProvider',
+    '$locationProvider',
+    function ($urlRouterProvider, $locationProvider) {
+      $urlRouterProvider.otherwise('/home');
+      $locationProvider.html5Mode(true);
+  }]);

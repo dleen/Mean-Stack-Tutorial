@@ -1,10 +1,18 @@
 'use strict';
 
 angular.module('flapperNewsApp')
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config([
+    '$stateProvider',
+    function ($stateProvider) {
+      $stateProvider
+      .state('home', {
+        url: '/home',
         templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          postPromise: ['posts', function (posts) {
+            return posts.getAll();
+          }]
+        },
       });
-  });
+  }]);
